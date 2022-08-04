@@ -2,8 +2,7 @@ from django.db.models import Q
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
-from profiles.models import UserProfile
+from core.models import UserProfile
 from profiles.serializers import ProfileSerializer
 
 

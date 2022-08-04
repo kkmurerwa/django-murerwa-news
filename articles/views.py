@@ -1,10 +1,8 @@
-from _asyncio import Task
-
 from django.db.models import Exists, OuterRef, Q
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from articles.models import Article
+from core.models import Article
 from articles.serializers import ArticleSerializer
 
 
