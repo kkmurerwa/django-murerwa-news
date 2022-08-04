@@ -66,14 +66,15 @@ def articles(request):
 @api_view(['GET'])
 def search_article(request):
     if request.method == 'GET':
-
+        # Get the search query
         search_query = request.GET.get('query', '')
 
+        # Get all articles that match the search query
         queryset = Article.objects.filter(
             Q(title__icontains=search_query) | Q(body__icontains=search_query)
         )
 
-        # Serialize them
+        # Serialize the results of the query
         serializer = ArticleSerializer(queryset, many=True)
 
         return Response(
@@ -95,7 +96,7 @@ def search_article(request):
         )
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET', 'PATCH', 'DELETE'])
 def article(request, id):
 
     # Get the article
@@ -125,7 +126,7 @@ def article(request, id):
             status=status.HTTP_200_OK
         )
 
-    elif request.method == 'PUT':
+    elif request.method == 'PATCH':
         # Serialize the article
         serializer = ArticleSerializer(current_article, data=request.data)
 
